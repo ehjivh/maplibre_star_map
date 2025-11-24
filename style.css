@@ -41,6 +41,42 @@ body {
 	color: #cccccc;
 }
 
+/* プロジェクション切り替えボタン */
+#projection-toggle {
+	margin-top: 15px;
+	display: flex;
+	gap: 8px;
+}
+
+#projection-toggle button {
+	flex: 1;
+	padding: 8px 12px;
+	font-size: 12px;
+	background-color: rgba(50, 50, 50, 0.9);
+	color: #cccccc;
+	border: 1px solid #555555;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#projection-toggle button:hover {
+	background-color: rgba(70, 70, 70, 0.9);
+	color: #ffffff;
+	border-color: #777777;
+}
+
+#projection-toggle button.active {
+	background-color: rgba(100, 150, 255, 0.9);
+	color: #ffffff;
+	border-color: rgba(120, 170, 255, 1);
+	font-weight: 600;
+}
+
+#projection-toggle button.active:hover {
+	background-color: rgba(120, 170, 255, 0.9);
+}
+
 /* ポップアップのスタイル */
 .maplibregl-popup-content {
 	background-color: rgba(0, 0, 0, 0.9);

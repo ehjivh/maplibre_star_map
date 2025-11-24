@@ -111,8 +111,39 @@ function setupStarsLayer() {
 // 初期ロード時の処理
 map.on('load', () => {
 	setupStarsLayer();
+	setupProjectionToggle();
 	console.log('星図マップの初期化が完了しました');
 });
+
+// プロジェクション切り替え機能のセットアップ
+function setupProjectionToggle() {
+	const mercatorBtn = document.getElementById('mercator-btn');
+	const globeBtn = document.getElementById('globe-btn');
+
+	// Mercatorボタンのクリックイベント
+	mercatorBtn.addEventListener('click', () => {
+		if (!mercatorBtn.classList.contains('active')) {
+			map.setProjection({
+				type: 'mercator'
+			});
+			mercatorBtn.classList.add('active');
+			globeBtn.classList.remove('active');
+			console.log('プロジェクションをMercatorに変更しました');
+		}
+	});
+
+	// Globeボタンのクリックイベント
+	globeBtn.addEventListener('click', () => {
+		if (!globeBtn.classList.contains('active')) {
+			map.setProjection({
+				type: 'globe'
+			});
+			globeBtn.classList.add('active');
+			mercatorBtn.classList.remove('active');
+			console.log('プロジェクションをGlobeに変更しました');
+		}
+	});
+}
 
 // B-V値から星の色名を取得する補助関数
 function getStarColorName(bv) {

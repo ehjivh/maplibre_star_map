@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>MapLibre GL JS 星図ビューア</title>
-	<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css">
+	<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,9 +16,13 @@
 		<p>約6等星以下の星を表示</p>
 		<p>星の大きさ: 等級（明るさ）</p>
 		<p>星の色: B-V色指数（温度）</p>
+		<div id="projection-toggle">
+			<button id="mercator-btn" class="active">平面図 (Mercator)</button>
+			<button id="globe-btn">地球儀 (Globe)</button>
+		</div>
 	</div>
 
-	<script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
+	<script src="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.js"></script>
 	<script src="app.js"></script>
 </body>
 
