@@ -1,11 +1,11 @@
-# MapLibre GL JSでヒッパルコス星表を可視化！インタラクティブな星図ビューアを作ってみた
+# MapLibre GL JSで星空の地図（星図）表を作ってみた!
 
 ## はじめに
 
-夜空を見上げると無数の星が輝いていますが、それらを地図のように表示できたら面白いと思いませんか？
-この記事では、ESAが提供するヒッパルコス星表データを使って、ブラウザ上で動作するインタラクティブな星図ビューアを作成する方法を紹介します。
+星空を地図のように表示するため、Maplibre GL JSを使って星図を作成しました。
+この記事では、ESAが提供するヒッパルコス星表データを使って、ブラウザ上で動作する星図ビューアを作成する方法を紹介します。
 
-MapLibre GL JSを使うことで、地図表示ライブラリの強力な機能（ズーム、パン、データドリブンスタイリング）を星図に応用できます。
+なお、本コード作成には、Github Copilot（Caude Sonnet4.5）を使用しております。
 
 ### 完成イメージ
 
@@ -36,7 +36,9 @@ maplibre_star_map/
 
 ## Step 1: データ変換スクリプトの作成
 
-ヒッパルコス星表のCSVデータをMapLibre GL JSで扱えるGeoJSON形式に変換します。
+ヒッパルコス星表をダウンロードし、CSVデータをMapLibre GL JSで扱えるGeoJSON形式に変換します。
+
+http://heasarc.gsfc.nasa.gov/cgi-bin/W3Browse/w3query.pl?&tablehead=name%3Dheasarc_hipparcos%26description%3DHipparcos+Main+Catalog%26url%3Dhttp%3A%2F%2Fheasarc.gsfc.nasa.gov%2FW3Browse%2Fstar-catalog%2Fhipparcos.html%26archive%3D%26radius%3D1%26mission%3DSTAR%2BCATALOG%26priority%3D3&mission=STAR+CATALOG&Action=More+Options&Action=Parameter+Search&ConeAdd=1
 
 ### ポイント1: 座標変換
 
@@ -101,8 +103,6 @@ geojson = {
 
 ## Step 2: HTMLの準備
 
-MapLibre GL JSをCDNから読み込み、基本的な構造を作ります。
-
 ```html:index.html
 <!DOCTYPE html>
 <html lang="ja">
@@ -134,7 +134,7 @@ MapLibre GL JSをCDNから読み込み、基本的な構造を作ります。
 
 ## Step 3: MapLibreの初期化とスタイリング
 
-ここがこのプロジェクトの核心部分です。**Data-Driven Styling**を使って星の見た目を制御します。
+**Data-Driven Styling**を使って星の見た目を調整します。
 
 ### MapLibreマップの初期化
 
@@ -348,7 +348,7 @@ http://localhost:8000
 
 ### 3. 科学的な色表現
 
-天文学的な観測に基づくB-V色指数と色温度の対応関係を正確に再現しています。
+天文学的な観測に基づくB-V色指数と色温度の対応関係を再現しています。
 
 ### 4. レスポンシブなUI
 
@@ -644,10 +644,15 @@ function getStarColorName(bv) {
 
 ## 参考資料
 
-- [MapLibre GL JS Documentation](https://maplibre.org/maplibre-gl-js-docs/)
-- [ヒッパルコス星表（ESA）](https://www.cosmos.esa.int/web/hipparcos)
-- [B-V色指数について（Wikipedia）](https://en.wikipedia.org/wiki/Color_index)
-- [MapLibre Style Specification](https://maplibre.org/maplibre-style-spec/)
+https://coelostat.hatenablog.com/entry/2016/02/16/223337
+
+https://maplibre.org/maplibre-gl-js-docs/
+
+https://en.wikipedia.org/wiki/Color_index
+
+https://maplibre.org/maplibre-style-spec/
+
+
 
 ## タグ候補
 
