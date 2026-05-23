@@ -79,6 +79,9 @@ function setupStarsLayer() {
 		}
 	});
 
+	// デフォルトの等級フィルター（初期は6.0等級まで表示）
+	map.setFilter('stars-layer', ['<=', ['get', 'mag'], 6.0]);
+
 	// インタラクション設定
 	map.on('mouseenter', 'stars-layer', () => {
 		map.getCanvas().style.cursor = 'pointer';
@@ -112,6 +115,7 @@ function setupStarsLayer() {
 map.on('load', () => {
 	setupStarsLayer();
 	setupProjectionToggle();
+	setupMagnitudeSlider();
 	console.log('星図マップの初期化が完了しました');
 });
 
@@ -156,4 +160,23 @@ function getStarColorName(bv) {
 	if (bv < 1.35) return '橙';
 	if (bv < 1.75) return '赤橙';
 	return '赤';
+}
+
+// 等級スライダーのセットアップ
+function setupMagnitudeSlider() {
+	const slider = document.getElementById('mag-slider');
+	const valueLabel = document.getElementById('mag-value');
+	if (!slider || !valueLabel) return;
+
+	// ラベル初期化
+	valueLabel.textContent = parseFloat(slider.value).toFixed(1);
+
+	// スライダー操作でレイヤーフィルタを更新
+	slider.addEventListener('input', (e) => {
+		const v = parseFloat(e.target.value);
+		valueLabel.textContent = v.toFixed(1);
+		if (map.getLayer('stars-layer')) {
+			map.setFilter('stars-layer', ['<=', ['get', 'mag'], v]);
+		}
+	});
 }

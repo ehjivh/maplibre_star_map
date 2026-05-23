@@ -77,6 +77,45 @@ body {
 	background-color: rgba(120, 170, 255, 0.9);
 }
 
+/* 等級スライダー */
+#magnitude-control {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+#magnitude-control label {
+	font-size: 13px;
+	color: #e6e6e6;
+}
+
+#mag-slider {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 8px;
+	background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+	border-radius: 6px;
+	outline: none;
+}
+
+#mag-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	background: #9BB2FF;
+	border-radius: 50%;
+	border: 2px solid #2b3a66;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+	cursor: pointer;
+}
+
+#mag-slider:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 4px rgba(155,178,255,0.15);
+}
+
 /* ポップアップのスタイル */
 .maplibregl-popup-content {
 	background-color: rgba(0, 0, 0, 0.9);
