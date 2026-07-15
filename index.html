@@ -24,6 +24,13 @@
 			<label for="mag-slider">最大等級: <span id="mag-value">6.0</span></label>
 			<input id="mag-slider" type="range" min="-1.5" max="6.0" step="0.1" value="6.0">
 		</div>
+		<!-- 星座線トグル -->
+		<div id="constellation-control" style="margin-top: 12px; font-size: 13px; color: #e6e6e6;">
+			<label style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
+				<input type="checkbox" id="constellation-toggle" checked>
+				星座線を表示
+			</label>
+		</div>
 	</div>
 
 	<script src="https://unpkg.com/maplibre-gl@5.13.0/dist/maplibre-gl.js"></script>

@@ -114,8 +114,10 @@ function setupStarsLayer() {
 // 初期ロード時の処理
 map.on('load', () => {
 	setupStarsLayer();
+	setupConstellationLayer();
 	setupProjectionToggle();
 	setupMagnitudeSlider();
+	setupConstellationToggle();
 	console.log('星図マップの初期化が完了しました');
 });
 
@@ -177,6 +179,42 @@ function setupMagnitudeSlider() {
 		valueLabel.textContent = v.toFixed(1);
 		if (map.getLayer('stars-layer')) {
 			map.setFilter('stars-layer', ['<=', ['get', 'mag'], v]);
+		}
+	});
+}
+
+// 星座線レイヤーのセットアップ関数
+function setupConstellationLayer() {
+	map.addSource('constellation-lines', {
+		type: 'geojson',
+		data: './constellation_lines.geojson'
+	});
+
+	map.addLayer({
+		id: 'constellation-lines-layer',
+		type: 'line',
+		source: 'constellation-lines',
+		layout: {
+			'line-join': 'round',
+			'line-cap': 'round',
+			'visibility': 'visible'
+		},
+		paint: {
+			'line-color': 'rgba(255, 255, 255, 0.25)',
+			'line-width': 1
+		}
+	}, 'stars-layer'); // stars-layerの下に配置
+}
+
+// 星座線トグルのセットアップ
+function setupConstellationToggle() {
+	const toggle = document.getElementById('constellation-toggle');
+	if (!toggle) return;
+
+	toggle.addEventListener('change', (e) => {
+		const visibility = e.target.checked ? 'visible' : 'none';
+		if (map.getLayer('constellation-lines-layer')) {
+			map.setLayoutProperty('constellation-lines-layer', 'visibility', visibility);
 		}
 	});
 }
